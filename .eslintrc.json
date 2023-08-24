@@ -15,7 +15,7 @@
     "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals"
   ],
-  "plugins": ["simple-import-sort"],
+  "plugins": ["simple-import-sort", "unused-imports"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
     "react/jsx-props-no-spreading": "off",
@@ -25,6 +25,7 @@
       { "blankLine": "always", "prev": "function", "next": "function" },
       { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
       { "blankLine": "always", "prev": "*", "next": "return" }
-    ]  
+    ],
+    "unused-imports/no-unused-imports": "error"
   }
 }
