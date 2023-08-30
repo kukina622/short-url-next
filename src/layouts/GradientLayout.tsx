@@ -8,7 +8,7 @@ interface IGradientLayoutProps {
 
 const GradientLayout = ({ children, className }: IGradientLayoutProps) => {
   return (
-    <div className={`h-screen ${styles.background} ${className}`}>
+    <div className={`min-h-screen ${styles.background} ${className}`}>
       {children}
     </div>
   );
