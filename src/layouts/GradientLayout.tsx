@@ -1,8 +1,22 @@
 import { ReactNode } from "react";
 import styles from "@/styles/background.module.css";
 
-const GradientLayout = ({ children }: { children: ReactNode }) => {
-  return <div className={`h-screen ${styles.background}`}>{children}</div>;
+interface IGradientLayoutProps {
+  children?: ReactNode;
+  className?: string;
+}
+
+const GradientLayout = ({ children, className }: IGradientLayoutProps) => {
+  return (
+    <div className={`h-screen ${styles.background} ${className}`}>
+      {children}
+    </div>
+  );
+};
+
+GradientLayout.defaultProps = {
+  className: "",
+  children: undefined,
 };
 
 export default GradientLayout;
