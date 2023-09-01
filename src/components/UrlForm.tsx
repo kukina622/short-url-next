@@ -8,13 +8,13 @@ const UrlForm = () => {
           <LinkIcon />
         </div>
         <input
-          className="w-[calc(100%-3.5rem)] mx-4 font-bold border-none text-xl leading-7 text-gray-900 bg-opacity-0 !outline-none"
+          className="h-full w-[calc(100%-3.5rem)] mx-4 font-bold border-none text-xl leading-7 text-gray-900 bg-opacity-0 !outline-none"
           placeholder="Paste a link to shorten it"
         />
       </div>
       <button
         type="submit"
-        className="w-fit font-bold inline-flex items-center justify-center p-0.5 text-lg text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 text-white hover:text-white/75 focus:ring-4 focus:outline-none focus:ring-cyan-200"
+        className="w-fit font-bold inline-flex items-center justify-center p-0.5 text-lg rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 text-white hover:text-white/75 focus:ring-4 focus:outline-none focus:ring-cyan-200"
       >
         <span className="px-5 py-2.5 transition-all ease-in duration-75 rounded-lg">
           Shorten
