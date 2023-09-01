@@ -1,23 +1,17 @@
 import { useState } from "react";
-import { Switch } from "@headlessui/react";
+import UrlForm from "@/components/UrlForm";
+import Banner from "@/components/Banner";
+import GradientLayout from "@/layouts/GradientLayout";
+import ShortLinkDialog from "@/components/ShortLinkDialog";
 
-export default function MyToggle() {
-  const [enabled, setEnabled] = useState(false);
+export default function Index() {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Switch
-      checked={enabled}
-      onChange={setEnabled}
-      className={`${
-        enabled ? "bg-blue-600" : "bg-gray-200"
-      } relative inline-flex h-6 w-11 items-center rounded-full`}
-    >
-      <span className="sr-only">Enable notifications</span>
-      <span
-        className={`${
-          enabled ? "translate-x-6" : "translate-x-1"
-        } inline-block h-4 w-4 transform rounded-full bg-white transition`}
-      />
-    </Switch>
+    <GradientLayout className="py-60 px-32">
+      <Banner />
+      <UrlForm />
+      <ShortLinkDialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    </GradientLayout>
   );
 }

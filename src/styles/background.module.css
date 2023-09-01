@@ -1,0 +1,24 @@
+.background {
+  background: linear-gradient(53deg, #f3b06f, #d65e5e, #d08dea, #6977ed, #69ede9, #6d4bef, #f3f86a);
+  background-size: 1400% 1400%;
+
+  -webkit-animation: gradient-background 23s ease infinite;
+  -moz-animation: gradient-background 23s ease infinite;
+  animation: gradient-background 23s ease infinite;
+}
+
+@-webkit-keyframes gradient-background {
+  0%{background-position:11% 0%}
+  50%{background-position:90% 100%}
+  100%{background-position:11% 0%}
+}
+@-moz-keyframes gradient-background {
+  0%{background-position:11% 0%}
+  50%{background-position:90% 100%}
+  100%{background-position:11% 0%}
+}
+@keyframes gradient-background {
+  0%{background-position:11% 0%}
+  50%{background-position:90% 100%}
+  100%{background-position:11% 0%}
+}
