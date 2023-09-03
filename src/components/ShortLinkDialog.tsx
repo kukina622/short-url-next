@@ -5,6 +5,7 @@ interface IShortLinkDialogProps {
   isOpen: boolean;
   isSuccess?: boolean;
   link?: string;
+  message?: string;
   onClose: () => void;
 }
 
@@ -12,6 +13,7 @@ const ShortLinkDialog = ({
   isOpen,
   isSuccess,
   link,
+  message,
   onClose,
 }: IShortLinkDialogProps) => {
   return (
@@ -48,7 +50,9 @@ const ShortLinkDialog = ({
                   {isSuccess ? "Success" : "Failure"}
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-lg text-gray-500">{link}</p>
+                  <p className="text-lg text-gray-500">
+                    {isSuccess ? link : message}
+                  </p>
                 </div>
 
                 <div className="mt-8">
@@ -80,7 +84,8 @@ const ShortLinkDialog = ({
 
 ShortLinkDialog.defaultProps = {
   isSuccess: false,
-  link: "Operation failed",
+  link: undefined,
+  message: "Operation failed",
 };
 
 export default ShortLinkDialog;

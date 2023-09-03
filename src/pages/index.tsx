@@ -7,11 +7,50 @@ import ShortLinkDialog from "@/components/ShortLinkDialog";
 export default function Index() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const [link, setLink] = useState<string | undefined>(undefined);
+
+  const [message, setMessage] = useState<string | undefined>(undefined);
+
+  async function onUrlFormSubmit(url: string) {
+    try {
+      const res = await fetch("/api/link", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url }),
+      });
+
+      const data = await res.json();
+
+      setIsSuccess(data.success);
+      if (data.success) {
+        setLink(data.data.shortUrl);
+
+        return;
+      }
+      setMessage(data.message);
+    } catch (error) {
+      setIsSuccess(false);
+      setMessage("Operation failed");
+    } finally {
+      setIsOpen(true);
+    }
+  }
+
   return (
     <GradientLayout className="py-60 px-32">
       <Banner />
-      <UrlForm />
-      <ShortLinkDialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <UrlForm onSubmit={onUrlFormSubmit} />
+      <ShortLinkDialog
+        isSuccess={isSuccess}
+        link={link}
+        message={message}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
     </GradientLayout>
   );
 }
