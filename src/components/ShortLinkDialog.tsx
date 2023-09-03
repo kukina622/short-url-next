@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 interface IShortLinkDialogProps {
   isOpen: boolean;
@@ -16,6 +16,20 @@ const ShortLinkDialog = ({
   message,
   onClose,
 }: IShortLinkDialogProps) => {
+  const [showHint, setShowHint] = useState<boolean>(false);
+
+  const [prevLink, setPrevLink] = useState(link);
+
+  if (prevLink !== link) {
+    setShowHint(false);
+    setPrevLink(link);
+  }
+
+  async function copyLink() {
+    await navigator.clipboard.writeText(link as string);
+    setShowHint(true);
+  }
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -64,13 +78,37 @@ const ShortLinkDialog = ({
                     Close
                   </button>
                   {isSuccess && (
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-purple-100 px-4 py-2 text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
-                      onClick={onClose}
-                    >
-                      Copy Link
-                    </button>
+                    <>
+                      <button
+                        type="button"
+                        className="mr-3 inline-flex justify-center rounded-md border border-transparent bg-purple-100 px-4 py-2 text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                        onClick={copyLink}
+                      >
+                        Copy Link
+                      </button>
+                      {showHint && (
+                        <>
+                          <svg
+                            className="w-4 h-4 text-green-600 inline mr-2"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 16 12"
+                          >
+                            <path
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M1 5.917 5.724 10.5 15 1.5"
+                            />
+                          </svg>
+                          <span className="text-lg text-green-600 font-medium">
+                            Copy Successful !
+                          </span>
+                        </>
+                      )}
+                    </>
                   )}
                 </div>
               </Dialog.Panel>
