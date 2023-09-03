@@ -40,6 +40,8 @@
         "allowArrowFunctions": true,
         "allowFunctions": true
       }
-    ]
+    ],
+    "import/prefer-default-export": "off",
+    "no-continue": "off"
   }
 }
