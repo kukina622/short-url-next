@@ -1,8 +1,23 @@
+import { useState } from "react";
 import LinkIcon from "@/components/LinkIcon";
 
-const UrlForm = () => {
+interface IUrlFormProps {
+  onSubmit: (url: string) => void;
+}
+
+const UrlForm = ({ onSubmit }: IUrlFormProps) => {
+  const [url, setUrl] = useState<string>("");
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    onSubmit(url);
+  }
+
   return (
-    <form className="px-5 bg-white w-full py-3 mx-auto rounded-lg flex justify-between">
+    <form
+      className="px-5 bg-white w-full py-3 mx-auto rounded-lg flex justify-between"
+      onSubmit={submit}
+    >
       <div className="w-10/12 flex items-center">
         <div className="rounded-md bg-sky-400 bg-opacity-70 inline-flex h-10 w-10 shrink-0 items-center justify-center text-white">
           <LinkIcon />
@@ -10,6 +25,8 @@ const UrlForm = () => {
         <input
           className="h-full w-[calc(100%-3.5rem)] mx-4 font-bold border-none text-xl leading-7 text-gray-900 bg-opacity-0 !outline-none"
           placeholder="Paste a link to shorten it"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
         />
       </div>
       <button
