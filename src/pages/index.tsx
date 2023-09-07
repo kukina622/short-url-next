@@ -3,6 +3,7 @@ import UrlForm from "@/components/UrlForm";
 import Banner from "@/components/Banner";
 import GradientLayout from "@/layouts/GradientLayout";
 import ShortLinkDialog from "@/components/ShortLinkDialog";
+import { isValidUrl } from "@/utils";
 
 export default function Index() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,14 @@ export default function Index() {
   const [message, setMessage] = useState<string | undefined>(undefined);
 
   async function onUrlFormSubmit(url: string) {
+    if (!isValidUrl(url)) {
+      setMessage("Operation failed");
+      setIsSuccess(false);
+      setIsOpen(true);
+
+      return;
+    }
+
     try {
       const res = await fetch("/api/link", {
         method: "POST",
