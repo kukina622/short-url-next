@@ -29,11 +29,8 @@ export default async function handler(
 
       return;
     }
-
-    res.status(200).json({
-      success: true,
-      originUrl: data.originUrl,
-    });
+    
+    res.redirect(301, data.originUrl);
 
     return;
   }
